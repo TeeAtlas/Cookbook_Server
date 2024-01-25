@@ -1,46 +1,29 @@
+import express from 'express';
+import filmsRouter from './routes/films.js';
 
-const http = require("node:http");
-const PORT = 8000;
+const app = express();
+const port = 8000;
 
-const server = http.createServer((req, res) => {
-    console.log(req.url, 'url')
-    if(req.url === '/testRoute'){
-        res.statusCode = 200;
-        res.setHeader("Content-Type", "application/json");
+app.use('/films', filmsRouter)
 
-        const data = {
-            message: "Hello test route",
-            timestamp: new Date().toISOString()
-        };
-
-        const jsonData = JSON.stringify(data);
-        res.end(jsonData)
-    } else if(req.url === "/"){
-        res.statusCode = 200;
-        res.setHeader("Content-Type", "application/json");
-
-        const data = {
-            message: "Hello root route",
-            timestamp: new Date().toISOString()
-        };
-
-        const jsonData = JSON.stringify(data);
-        res.end(jsonData)
-    }else {
-        res.statusCode = 404;
-        res.setHeader("Content-Type", "application/json");
-
-        const data = {
-            message: "the resource does not exist",
-            timestamp: new Date().toISOString()
-        };
-
-        const jsonData = JSON.stringify(data);
-        res.end(jsonData)
-    }
-    
+app.get('/', (req, res) => {
+  res.send('get request at root') //to retrieve data
 })
 
-server.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-})
+    app.post('/', (req, res) => {
+        res.send('post request to root')
+    })
+
+        app.put('/', (req, res) => {
+            res.send('put request to root')
+        })
+
+            app.delete('/', (req, res) => {
+                res.send('delete request to root')
+            })
+
+  
+
+app.listen(port, () => {
+  console.log(`films app listening on port ${port}`)
+});
