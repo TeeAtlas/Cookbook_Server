@@ -1,9 +1,9 @@
 let films = [ 
-    {
-    id: 1,
-    name: 'The Godfather',
-    releaseYear: 1972
-    },
+    // {
+    // id: 1,
+    // name: 'The Godfather',
+    // releaseYear: 1972
+    // },
     {
     id: 2,
     name: 'The Apartment',
@@ -25,7 +25,7 @@ export const getFilm= (req, res) => {
     const film = films.find(film => film.id ===  Number(id))
 
     if(!film) {
-        res.status(404).json({ message: "film no found" });
+        res.status(404).json({ message: "Requested Film Not Found" });
     } else {
         res.json(film);
     }
