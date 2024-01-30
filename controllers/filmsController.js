@@ -1,9 +1,9 @@
 let films = [ 
-    // {
-    // id: 1,
-    // name: 'The Godfather',
-    // releaseYear: 1972
-    // },
+    {
+    id: 1,
+    name: 'The Godfather',
+    releaseYear: 1972
+    },
     {
     id: 2,
     name: 'The Apartment',
@@ -20,7 +20,7 @@ export const getFilms = (req, res) => {
     res.json(films)
 }
 
-export const getFilm= (req, res) => {
+export const getFilm = (req, res) => {
     const {id} = req.params;
     const film = films.find(film => film.id ===  Number(id))
 
